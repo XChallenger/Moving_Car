@@ -1,0 +1,370 @@
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
+import numpy as np
+
+def myinit():
+    glMatrixMode(GL_PROJECTION)
+    glClearColor(.2,0.2,0.2,.2)
+    glClear(GL_COLOR_BUFFER_BIT)
+    gluPerspective(60,1,.1,60)
+    gluLookAt(10,10,10,0,0,0,0,1,0)
+
+x=-40
+angle=0
+r=.1
+g=.1
+b=.5
+r2=1
+g2=0
+b2=.2
+def car():
+    ##  Body OF Car ##
+    global x
+    global angle
+    global r,g,b
+    global r2,g2,b2
+    glClear(GL_COLOR_BUFFER_BIT)
+    glColor(r,g,b)
+    glMatrixMode(GL_MODELVIEW)
+    glLoadIdentity()
+
+    glTranslate(x,0,.5*-10)
+    glScale(1, .25, .5)
+    glutWireCube(5)
+
+
+
+    glLoadIdentity()
+    glTranslate(x, 5*.25,.5*-10)
+    glScale(.5,.25,.5)
+    glutWireCube(5)
+
+
+    glLoadIdentity()
+    glColor(r2,g2,b2)
+    glTranslate(x+2.5,-2.5*.25,(-10+2.5)*.5)
+    glRotate(angle,0,0,1)
+    glutWireTorus(.1,.5,12,12)
+
+    glLoadIdentity()
+    glColor(r2,g2,b2)
+    glTranslate(x - 2.5, -2.5 * .25,(-10+ 2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(r2,g2,b2)
+    glTranslate(x - 2.5, -2.5 * .25, (-10-2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(r2,g2,b2)
+    glTranslate(x + 2.5, -2.5 * .25, (-10-2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(.6, .9, 0.3)
+    glTranslate(x+2.3,2*0.25,.5*(1.5-10))
+    glutWireSphere(.25,20,20)
+
+    glLoadIdentity()
+    glColor(.6,.9,0.3)
+    glTranslate(x + 2.3, 2 * 0.25,.5*(-10- 1.5))
+    glutWireSphere(.25, 20, 20)
+
+
+
+    ########## Second Car ##########################
+    glColor(r2,g2,b2)
+    glLoadIdentity()
+
+    glTranslate(x, 0, .5 * 10)
+    glScale(1, .25, .5)
+    glutWireCube(5)
+
+    glLoadIdentity()
+    glTranslate(x, 5 * .25, .5 * 10)
+    glScale(.5, .25, .5)
+    glutWireCube(5)
+
+    glLoadIdentity()
+    glColor(r, g, b)
+    glTranslate(x + 2.5, -2.5 * .25, (10 + 2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(r, g, b)
+    glTranslate(x - 2.5, -2.5 * .25, (10 + 2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(r, g, b)
+    glTranslate(x - 2.5, -2.5 * .25, (10 - 2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(r,g,b)
+    glTranslate(x + 2.5, -2.5 * .25, (10 - 2.5) * .5)
+    glRotate(angle, 0, 0, 1)
+    glutWireTorus(.1, .5, 12, 12)
+
+    glLoadIdentity()
+    glColor(.6, .9, 0.3)
+    glTranslate(x + 2.3, 2 * 0.25, .5 * (1.5 + 10))
+    glutWireSphere(.25, 20, 20)
+
+    glLoadIdentity()
+    glColor(.6, .9, 0.3)
+    glTranslate(x + 2.3, 2 * 0.25, .5 * (10 - 1.5))
+    glutWireSphere(.25, 20, 20)
+
+    angle=angle+0.1
+
+    if x<=13:
+        x+=.05
+        angle+=.1
+
+
+    else:
+        x=-40
+        x+=.05
+        angle+=.1
+        r=np.random.random_sample()
+        g=np.random.random_sample()
+        b=np.random.random_sample()
+        r2=np.random.random_sample()
+        g2=np.random.random_sample()
+        b2=np.random.random_sample()
+
+
+    ####### Road ######
+
+    glLoadIdentity()
+    glColor(1,1,1)
+    glScale(.25,0,.25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(3,0,0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(6, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(9, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-9, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-6, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-3, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-12, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-15, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-18, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-21, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-24, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-27, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glTranslate(-30, 0, 0)
+    glScale(.25, 0, .25)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(0,0,55)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(15, 0, 55)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-15, 0, 55)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(30, 0, 55)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-30, 0, 55)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-45, 0, 55)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(0, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(15, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-15, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(30, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-30, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-45, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-60, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-75, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-90, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-105, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-120, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-135, 0, -40)
+    glutWireCube(10)
+
+    glLoadIdentity()
+    glColor(1, 1, 1)
+    glScale(.25, 0, .1)
+    glTranslate(-150, 0, -40)
+    glutWireCube(10)
+
+
+
+
+
+
+
+
+    glFlush()
+
+
+
+
+
+
+
+
+
+glutInit()
+glutInitDisplayMode(GLUT_SINGLE |GLUT_RGB)
+glutInitWindowSize(600,500)
+glutCreateWindow(b"Moving_Car_Xchallenger")
+glutDisplayFunc(car)
+glutIdleFunc(car)
+myinit()
+glutMainLoop()
+
